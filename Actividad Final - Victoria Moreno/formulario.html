@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad final</title>
+    <link rel="stylesheet" href="css/ccs.css">
+</head>
+<body>
+    <h1>Formulario Información Alta Telefónica</h1>
+    <form class="formulario" method="post">
+        <fieldset>
+            <legend>Datos personales </legend>
+            <div>
+                <table>
+                        <tr>
+                            <label for="nombre">Nombre: </label>
+                            <input type="text" name="nombre" maxlength="30" onkeypress="return letras(event)"><span id="errNom" class="error"></span><br>
+                        </tr>
+                        <tr>
+                            <label for="apellido">Apellidos: </label>
+                            <input type="text" name="apellido" maxlength="60" onkeypress="return letras(event)"><span id="errApe" class="error"></span><br>
+                        </tr>
+                        <tr>
+                            <label for="direccion">Dirección: </label>
+                            <input id="direccion" type="text" name="direccion" maxlength="60" onkeypress="return letrasNumeros(event)"><span id="errDir" class="error"></span><br>
+                        </tr>
+                        <tr>
+                            <label for="codigoPostal">Código postal: </label>
+                            <input type="number" name="codigoPostal" id="codigoPostal" maxlength="5" onkeypress="return numeros(event)"><span id="errCod" class="error"></span><br>
+                        </tr>
+                        <tr>
+                            <label for="localidad">Localidad: </label>
+                            <input type="text" name="localidad" id="localidad" maxlength="30" onkeypress="return letras(event)"><span id="errLoc" class="error"></span><br>
+                        </tr>
+                </table>
+            </div>
+        </fieldset><br>
+
+        <script>
+            function Provincia(codigoPostal){
+              var provincias = {
+                1: "Alava", 2: "Albacete", 3: "Alicante", 4: "Almeria", 5: "Avila",
+                6: "Badajoz", 7: "Baleares", 08: "Barcelona", 09: "Burgos", 10: "Caceres",
+                11: "Cadiz", 12: "Castellon", 13: "Ciudad Real", 14: "Cordoba", 15: "Coruña",
+                16: "Cuenca", 17: "Gerona", 18: "Granada", 19: "Guadalajara", 20: "Guipuzcoa",
+                21: "Huelva", 22: "Huesca", 23: "Jaen", 24: "Leon", 25: "Lerida",
+                26: "La Rioja", 27: "Lugo", 28: "Madrid", 29: "Malaga", 30: "Murcia",
+                31: "Navarra", 32: "Orense", 33: "Asturias", 34: "Palencia", 35: "Las Palmas",
+                36: "Pontevedra", 37: "Salamanca", 38: "Santa Cruz de Tenerife", 39: "Cantabria", 40: "Segovia",
+                41: "Sevilla", 42: "Soria", 43: "Tarragona", 44: "Teruel", 45: "Toledo",
+                46: "Valencia", 47: "Valladolid", 48: "Vizcaya", 49: "Zamora", 50: "Zaragoza",
+                51: "Ceuta", 52: "Melilla"
+              };
+              
+              if(codigoPostal.length == 5 && codigoPostal <= 52999 && codigoPostal >= 1000)
+                return provincias[parseInt(codigoPostal.substring(0,2))];
+              else
+                return "Provincia no encontrada";
+            }
+            
+            document.getElementById('codigoPostal').onkeyup = function(){
+              document.getElementById('localidad').value = Provincia(document.getElementById('codigoPostal').value);
+            }
+          </script>
+       
+        <fieldset>
+            <legend>Tipo de Contratación</legend>
+        <div>
+            <table>
+                <tr>
+                    <input type="radio" name="contrato" value="1" checked>Nueva Contratación &nbsp;&nbsp;
+                    <input type="radio" name="contrato" value="2">Portabilidad &nbsp;&nbsp;
+                    <input type="radio" name="contrato" value="3">Cambio de Contrato &nbsp;&nbsp;
+                </tr>
+                <tr>
+                    <td>
+                        <label for="compania">Elija la compañia actual: </label>
+                        <select name="compania">
+                            <option>Movistar</option>
+                            <option>Orange</option>
+                            <option>Vodafone</option>
+                            <option>Yoigo</option>
+                            <option>No Tengo Ninguna Compañía</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <label for="nuevaCompania">En caso de portabilidad, elija la nueva compañía: </label>
+                        <select name="nuevaCompania">
+                            <option>Movistar</option>
+                            <option>Orange</option>
+                            <option>Vodafone</option>
+                            <option>Yoigo</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </fieldset><br>
+        
+        <fieldset>
+            <legend>Datos Bancarios </legend>
+            <div>
+                <table>
+                        <tr>
+                            <label for="pais">País: </label>
+                            <input type="text" id="pais" name="pais" maxlength="2" placeholder="ES" value="ES" readonly>
+                            <label>(sólo válido ES)</label><br>
+                        </tr>
+                        <tr>
+                            <label for="iban">Control IBAN: </label>
+                            <input type="number" id="iban" name="iban" maxlength="2" max="99" placeholder="XX" oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>
+                            <label>(dos dígitos)</label><br>
+                        </tr>
+                        <tr>
+                            <label for="entidad">Entidad: </label>
+                            <input type="number" id="entidad" name="entidad" maxlength="4" max="9999" placeholder="XXXX"  oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>
+                            <label>(cuatro dígitos)</label><br>
+                        </tr>
+                        <tr>
+                            <label for="sucursal">Sucursal: </label>
+                            <input type="number" id="sucursal" name="sucursal" maxlength="4" max="9999"  placeholder="XXXX"  oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>
+                            <label>(cuatro dígitos)</label><br>
+                        </tr>
+                        <tr>
+                            <label for="dc">DC: </label>
+                            <input type="number" id="dc" name="dc" maxlength="2" max="99" placeholder="XX"  oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>
+                            <label>(dos dígitos)</label><br>
+                        </tr>
+                        <tr>
+                            <label for="cuenta">Cuenta: </label>
+                            <input type="number" id="cuenta" name="cuenta" maxlength="10" max="9999999999" placeholder="XXXXXXXXXX"  oninput='if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'>
+                            <label>(diez dígitos)</label><br>
+                        </tr>
+                </table>
+            </div>
+        </fieldset><br>
+        
+        <fieldset>    
+                <legend>Datos Estadísticos - ¿Cómo nos conoció?</legend>
+            <div>
+                <table>
+                        <tr>
+                            <input type="checkbox" name="tv" value="1">A través de la TV<br/>
+                        </tr>
+                        <tr>
+                            <input type="checkbox" name="radio" value="2">A través de la radio<br/>
+                        </tr>
+                        <tr>
+                            <input type="checkbox" name="internet" value="3">A través de la Internet<br/>
+                        </tr>
+                        <tr>
+                            <input type="checkbox" name="otros" value="4">Otros<br/>
+                        </tr>
+                        <tr>
+                            <input type="range" id="points" name="points" min="1" max="5" value="1">Valoración [1-5]<br/>
+                        </tr>
+                        <tr>
+                            <label for="date">Fecha de la encuesta: </label><input type="date" id="date" name="date" class="date" value="2019-01-01" min="2018-01-01" max="2030-12-31">
+                        </tr>
+                </table>
+            </div>
+        </fieldset>
+        
+        <div>
+            <button type="button">Enviar Datos</button>
+            <button type="reset">Borrar datos</button>
+        </div>
+
+        <div>
+            <button id="valor" type="button" name="button" class="button">Mostrar <br> Valoración</button>
+            <!-- <script>
+                function mostrarValor() {
+                    var valor = (document.getElementById("points").value);
+                    alert("Has valorado con " + valor + " puntos");
+                }
+            </script> -->
+            <button id="cuentaCompleta" type="button" name="button" class="button">Mostrar <br> Cuenta</button>
+            <!-- <script>
+                function mostrarCuenta() {
+                    var pais = (document.getElementById("pais").value);
+                    var iban = (document.getElementById("iban").value);
+                    var entidad = (document.getElementById("entidad").value);
+                    var sucursal = (document.getElementById("sucursal").value);
+                    var dc = (document.getElementById("dc").value);
+                    var cuenta = (document.getElementById("cuenta").value);
+                    alert("Le informamos que su cuenta bancaria es: " +pais+iban+"-"+entidad+"-"+sucursal+"-"+dc+"-"+cuenta);
+                }
+            </script> -->
+            <button id="dia" type="button" name="button" class="button">Mostrar Día <br> Semana</button>
+            <!-- <script>
+                function mostrarDia() {
+                    var dia=new Date(document.getElementById("date").value);
+                    dia.setDate(dia.getDate());
+
+                    var diaSemana=new Array(7);
+                    diaSemana = ["Domingo", "Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+                    var nombre= diaSemana[dia.getDay()];
+                    document.getElementById("date").innerHTML=nombre;
+
+                    alert("La fecha seleccionada en el elemento de fecha es un "+ nombre);
+                }
+            </script> -->
+        </div>
+
+    </form>
+    <script src="javascript/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+html {
+    background-color: rgb(255, 255, 255);
+}
+
+h1{
+    text-align: center;
+    text-shadow: 0.1em 0.1em rgb(255, 255, 0);;
+    color: rgb(0, 0, 255);
+}
+
+legend{
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+fieldset{
+    background-color: rgb(0, 225, 255);
+}
+
+input{
+    background-color: rgb(255, 255, 0);
+}
+
+input.date{
+    background-color: rgb(255, 255, 255);
+}
+
+.button{
+    background-color: rgb(255, 180, 170);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+span {
+    color: rgb(255, 0, 0);
+   }
+
+.errorTexto{
+    border-color: rgb(255, 144, 0);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(255, 144, 0, 0.6);
+    outline: 0 none;
+}
+
+.correctTexto{
+    border-color: rgb(0, 255, 0);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(255, 144, 0, 0.6);
+    outline: 0 none;
+}
